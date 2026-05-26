@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patricio Beltran — Materials Engineer & NASA Researcher</title>
+<meta name="description" content="Undergraduate researcher at UTEP's W.M. Keck Center working with NASA on advanced superalloys. Director of Academics, SHPE/MAES UTEP.">
+<meta property="og:title" content="Patricio Beltran">
+<meta property="og:description" content="Researcher · Engineer · Builder at the intersection of additive manufacturing and aerospace materials science.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23D4A843'/><text x='50' y='70' text-anchor='middle' font-family='serif' font-weight='bold' font-size='52' fill='%2308080F'>PB</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ========================================================
+   DESIGN TOKENS
+======================================================== */
+:root{
+  --bg:#07070E; --surface:#0F0F1E; --surface2:#161628; --surface3:#1E1E35;
+  --border:#1A1A30; --border2:#252545;
+  --gold:#D4A843; --gold-dim:#7A5F20; --gold-glow:rgba(212,168,67,.14); --gold-glow2:rgba(212,168,67,.06);
+  --sky:#38C4F0; --sky-dim:#1B5F75; --sky-glow:rgba(56,196,240,.1);
+  --text:#EDE9F4; --text2:#A0A0C0; --muted:#4A4A70;
+  --green:#22D3A4; --red:#F06060;
+  --ff-d:'Bebas Neue',sans-serif; --ff-b:'Outfit',sans-serif; --ff-m:'Space Mono',monospace;
+  --nav-h:66px; --mw:1200px; --r:8px; --r2:14px;
+  --ease:cubic-bezier(.4,0,.2,1); --spring:cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ========================================================
+   RESET & BASE
+======================================================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:16px;line-height:1.65;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{font-family:var(--ff-b);cursor:pointer;border:none;background:none}
+ul{list-style:none}
+img{display:block;max-width:100%}
+
+/* Grain */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.032'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;mix-blend-mode:overlay}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-dim)}
+
+/* ========================================================
+   NAV
+======================================================== */
+nav{
+  position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:200;
+  display:flex;align-items:center;justify-content:space-between;padding:0 48px;
+  background:rgba(7,7,14,.9);backdrop-filter:blur(28px) saturate(180%);
+  border-bottom:1px solid var(--border);transition:all .3s var(--ease)
+}
+.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.nav-monogram{
+  width:36px;height:36px;border-radius:7px;
+  background:var(--gold);display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff-b);font-weight:700;font-size:13px;color:var(--bg);letter-spacing:.02em;
+  flex-shrink:0;transition:transform .2s var(--spring)
+}
+.nav-logo:hover .nav-monogram{transform:scale(1.08) rotate(-3deg)}
+.nav-wordmark{font-family:var(--ff-d);font-size:20px;letter-spacing:.1em;color:var(--text)}
+.nav-wordmark span{color:var(--gold)}
+.nav-links{display:flex;gap:0;align-items:center}
+.nav-links a{
+  font-family:var(--ff-m);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text2);padding:8px 14px;border-radius:4px;
+  transition:color .2s,background .2s;position:relative
+}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-links a.active::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:16px;height:1.5px;background:var(--gold);border-radius:1px}
+.nav-cta{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--ff-m);font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--gold-dim);padding:7px 16px;border-radius:4px;
+  transition:all .2s var(--ease)
+}
+.nav-cta:hover{background:var(--gold-glow);border-color:var(--gold)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--text2);transition:all .3s}
+.nav-links.open .nav-hamburger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-links.open .nav-hamburger span:nth-child(2){opacity:0}
+.nav-links.open .nav-hamburger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ========================================================
+   PAGES (SPA)
+======================================================== */
+.page-section{display:none;min-height:calc(100vh - var(--nav-h));padding-top:var(--nav-h)}
+.page-section.active{display:block}
+
+/* ========================================================
+   HERO
+======================================================== */
+#home{display:none;position:relative;height:100vh;overflow:hidden;padding:0}
+#home.active{display:block}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-content{
+  position:relative;z-index:10;height:100%;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:0 72px;max-width:900px
+}
+.hero-eyebrow{
+  font-family:var(--ff-m);font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px;
+  opacity:0;animation:fadeUp .8s var(--ease) .3s forwards
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
+.hero-name{
+  font-family:var(--ff-d);font-size:clamp(64px,8.5vw,118px);
+  letter-spacing:.04em;line-height:.92;color:var(--text);
+  opacity:0;animation:fadeUp .9s var(--ease) .5s forwards
+}
+.hero-name em{color:var(--gold);font-style:normal}
+.hero-title{
+  font-family:var(--ff-m);font-size:clamp(11px,1.3vw,14px);letter-spacing:.15em;
+  text-transform:uppercase;color:var(--text2);margin-top:24px;
+  opacity:0;animation:fadeUp .8s var(--ease) .8s forwards
+}
+.hero-desc{
+  font-size:clamp(15px,1.5vw,17px);color:var(--text2);max-width:520px;margin-top:20px;line-height:1.7;
+  opacity:0;animation:fadeUp .8s var(--ease) 1s forwards
+}
+.hero-actions{
+  display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.2s forwards
+}
+.btn-primary{
+  font-family:var(--ff-m);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--gold);color:var(--bg);padding:14px 32px;border-radius:4px;
+  font-weight:700;transition:all .2s var(--spring);display:flex;align-items:center;gap:8px
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,168,67,.35)}
+.btn-outline{
+  font-family:var(--ff-m);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  border:1px solid var(--border2);color:var(--text2);padding:14px 32px;border-radius:4px;
+  transition:all .2s var(--ease)
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{
+  position:absolute;bottom:48px;left:72px;right:72px;
+  display:flex;gap:0;border-top:1px solid var(--border);padding-top:28px;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.4s forwards
+}
+.hero-stat{flex:1;border-right:1px solid var(--border);padding:0 32px 0 0}
+.hero-stat:first-child{padding-left:0}
+.hero-stat:last-child{border-right:none}
+.hs-num{font-family:var(--ff-d);font-size:36px;letter-spacing:.06em;color:var(--gold);line-height:1}
+.hs-lbl{font-family:var(--ff-m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.hero-scroll{
+  position:absolute;right:48px;bottom:48px;z-index:10;
+  font-family:var(--ff-m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);writing-mode:vertical-lr;display:flex;align-items:center;gap:10px;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.6s forwards
+}
+.hero-scroll::after{content:'';width:1px;height:40px;background:linear-gradient(to bottom,var(--muted),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ========================================================
+   SECTIONS — shared
+======================================================== */
+.section-wrap{max-width:var(--mw);margin:0 auto;padding:96px 48px}
+.section-header{margin-bottom:64px}
+.sec-eyebrow{
+  font-family:var(--ff-m);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:16px
+}
+.sec-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.sec-title{font-family:var(--ff-d);font-size:clamp(38px,5vw,58px);letter-spacing:.04em;line-height:1;color:var(--text)}
+.sec-sub{font-size:15px;color:var(--text2);max-width:560px;margin-top:14px;line-height:1.7}
+
+/* Reveal animation */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ========================================================
+   ABOUT
+======================================================== */
+.about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:64px;align-items:start}
+.about-left{}
+.about-photo{
+  aspect-ratio:4/5;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  font-family:var(--ff-m);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);
+  overflow:hidden;position:relative
+}
+.about-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--surface2),var(--surface));opacity:.6}
+.photo-placeholder-icon{font-size:48px;position:relative;z-index:1;filter:grayscale(1) opacity(.3)}
+.photo-placeholder-text{position:relative;z-index:1}
+.about-quote{
+  margin-top:24px;border-left:2px solid var(--gold);padding-left:20px;
+  font-family:var(--ff-m);font-size:12px;font-style:italic;line-height:1.8;color:var(--text2)
+}
+.about-affiliations{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px}
+.affil-chip{
+  font-family:var(--ff-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--border2);color:var(--muted);padding:6px 12px;border-radius:3px;
+  transition:border-color .2s,color .2s
+}
+.affil-chip:hover{border-color:var(--gold-dim);color:var(--gold)}
+.about-right{}
+.about-bio p{color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:16px}
+.about-bio p strong{color:var(--text);font-weight:600}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+.about-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px}
+.ac-label{font-family:var(--ff-m);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.ac-val{font-size:14px;color:var(--text);font-weight:500}
+.skills-row{margin-top:32px}
+.skills-label{font-family:var(--ff-m);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px}
+.skill-tag{
+  font-family:var(--ff-m);font-size:9px;letter-spacing:.1em;
+  background:var(--surface2);border:1px solid var(--border2);
+  color:var(--text2);padding:5px 11px;border-radius:3px;
+  transition:all .15s
+}
+.skill-tag:hover{border-color:var(--sky-dim);color:var(--sky);background:var(--sky-glow)}
+
+/* ========================================================
+   RESEARCH
+======================================================== */
+.research-featured{
+  background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);
+  overflow:hidden;margin-bottom:40px;
+  display:grid;grid-template-columns:1.4fr 1fr;
+  position:relative
+}
+.rf-shimmer{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  animation:shimmerScan 3s ease-in-out infinite
+}
+@keyframes shimmerScan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.rf-left{padding:48px}
+.rf-eyebrow{font-family:var(--ff-m);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.rf-title{font-family:var(--ff-d);font-size:clamp(28px,3.5vw,42px);letter-spacing:.04em;line-height:1.05;color:var(--text);margin-bottom:16px}
+.rf-desc{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:24px}
+.rf-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
+.rf-right{
+  background:var(--surface2);border-left:1px solid var(--border);
+  padding:48px 36px;display:flex;flex-direction:column;gap:20px
+}
+.rf-stat{border-bottom:1px solid var(--border);padding-bottom:18px}
+.rf-stat:last-child{border-bottom:none;padding-bottom:0}
+.rfs-lbl{font-family:var(--ff-m);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.rfs-val{font-size:14px;color:var(--text);font-weight:500}
+.research-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.research-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px;
+  transition:border-color .2s,background .2s;cursor:default
+}
+.research-card:hover{border-color:var(--border2);background:var(--surface2)}
+.rc-icon{font-size:26px;margin-bottom:14px}
+.rc-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px}
+.rc-desc{font-size:13px;color:var(--text2);line-height:1.65}
+.rc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+
+/* ========================================================
+   PROJECTS
+======================================================== */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.filter-btn{
+  font-family:var(--ff-m);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  border:1px solid var(--border2);color:var(--text2);padding:8px 18px;border-radius:3px;
+  transition:all .2s var(--ease)
+}
+.filter-btn:hover{border-color:var(--muted);color:var(--text)}
+.filter-btn.active{border-color:var(--gold);color:var(--gold);background:var(--gold-glow2)}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.project-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;cursor:pointer;transition:all .25s var(--ease);display:flex;flex-direction:column
+}
+.project-card:hover{border-color:var(--border2);background:var(--surface2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.pc-top{
+  padding:20px 22px 0;display:flex;align-items:flex-start;justify-content:space-between
+}
+.pc-icon{font-size:24px}
+.pc-badge{
+  font-family:var(--ff-m);font-size:8px;letter-spacing:.15em;text-transform:uppercase;
+  padding:4px 9px;border-radius:2px
+}
+.pc-badge.research{background:rgba(212,168,67,.1);color:var(--gold);border:1px solid var(--gold-dim)}
+.pc-badge.engineering{background:rgba(56,196,240,.08);color:var(--sky);border:1px solid var(--sky-dim)}
+.pc-badge.software{background:rgba(34,211,164,.08);color:var(--green);border:1px solid rgba(34,211,164,.25)}
+.pc-badge.leadership{background:rgba(240,96,96,.08);color:#F09060;border:1px solid rgba(240,150,96,.25)}
+.pc-body{padding:16px 22px 22px;flex:1;display:flex;flex-direction:column}
+.pc-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.35}
+.pc-desc{font-size:12.5px;color:var(--text2);line-height:1.6;flex:1}
+.pc-footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.pc-year{font-family:var(--ff-m);font-size:9px;letter-spacing:.12em;color:var(--muted)}
+.pc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.pc-tag{font-family:var(--ff-m);font-size:8px;letter-spacing:.08em;background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:3px 7px;border-radius:2px}
+.pc-arrow{font-size:14px;color:var(--muted);transition:color .2s,transform .2s}
+.project-card:hover .pc-arrow{color:var(--gold);transform:translateX(3px)}
+
+/* ========================================================
+   EXPERIENCE TIMELINE
+======================================================== */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--border2) 10%,var(--border2) 90%,transparent)}
+.tl-item{
+  position:relative;padding:0 0 52px 40px;
+  opacity:0;transform:translateX(-12px);transition:opacity .6s var(--ease),transform .6s var(--ease)
+}
+.tl-item.visible{opacity:1;transform:translateX(0)}
+.tl-dot{
+  position:absolute;left:-4.5px;top:6px;width:9px;height:9px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--gold);
+  box-shadow:0 0 0 3px var(--bg),0 0 0 4px var(--gold-dim)
+}
+.tl-date{font-family:var(--ff-m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.tl-role{font-size:17px;font-weight:600;color:var(--text);margin-bottom:4px}
+.tl-org{font-family:var(--ff-m);font-size:10.5px;letter-spacing:.1em;color:var(--sky);margin-bottom:16px}
+.tl-points{padding-left:0}
+.tl-points li{
+  font-size:13.5px;color:var(--text2);line-height:1.65;padding:5px 0;
+  border-bottom:1px solid var(--border);
+  padding-left:16px;position:relative
+}
+.tl-points li::before{content:'›';position:absolute;left:0;color:var(--gold-dim)}
+.tl-points li:last-child{border-bottom:none}
+
+/* ========================================================
+   BLOG
+======================================================== */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.blog-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:28px;cursor:pointer;transition:all .2s var(--ease);
+  display:flex;flex-direction:column
+}
+.blog-card:hover{border-color:var(--border2);background:var(--surface2);transform:translateY(-2px)}
+.blog-date{font-family:var(--ff-m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.blog-title{font-size:16px;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:12px}
+.blog-excerpt{font-size:13px;color:var(--text2);line-height:1.65;flex:1}
+.blog-cta{font-family:var(--ff-m);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-top:20px;transition:letter-spacing .2s}
+.blog-card:hover .blog-cta{letter-spacing:.22em}
+
+/* ========================================================
+   GALLERY
+======================================================== */
+.gallery-instructions{
+  background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);
+  padding:48px;text-align:center;margin-bottom:32px
+}
+.gi-icon{font-size:48px;margin-bottom:20px}
+.gi-title{font-family:var(--ff-d);font-size:28px;letter-spacing:.06em;margin-bottom:12px;color:var(--text)}
+.gi-desc{font-size:14px;color:var(--text2);line-height:1.7;max-width:460px;margin:0 auto}
+.gi-code{
+  font-family:var(--ff-m);font-size:12px;background:var(--bg);border:1px solid var(--border2);
+  border-radius:var(--r);padding:16px 20px;margin-top:24px;text-align:left;color:var(--sky);line-height:2
+}
+.gallery-placeholder{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px
+}
+.gp-item{
+  aspect-ratio:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--muted);
+  transition:border-color .2s
+}
+.gp-item:hover{border-color:var(--border2)}
+
+/* ========================================================
+   CONTACT
+======================================================== */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.contact-info{}
+.contact-links{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.contact-link{
+  display:flex;align-items:center;gap:16px;padding:16px 20px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  transition:all .2s var(--ease)
+}
+.contact-link:hover{border-color:var(--border2);background:var(--surface2);transform:translateX(4px)}
+.cl-icon{width:36px;height:36px;border-radius:6px;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.cl-text{}
+.cl-label{font-family:var(--ff-m);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.cl-val{font-size:14px;color:var(--text);font-weight:500}
+.contact-discuss{
+  margin-top:12px;padding:16px 20px;
+  background:var(--gold-glow2);border:1px solid var(--gold-dim);border-radius:var(--r);
+  display:flex;align-items:center;gap:16px;transition:all .2s
+}
+.contact-discuss:hover{background:var(--gold-glow);border-color:var(--gold)}
+.contact-form-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:36px}
+.cf-title{font-family:var(--ff-d);font-size:26px;letter-spacing:.06em;margin-bottom:28px;color:var(--text)}
+.cf-field{margin-bottom:20px}
+.cf-label{font-family:var(--ff-m);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+.cf-input, .cf-textarea{
+  width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r);
+  color:var(--text);font-family:var(--ff-b);font-size:14px;padding:12px 14px;
+  transition:border-color .2s;resize:vertical;outline:none
+}
+.cf-input:focus, .cf-textarea:focus{border-color:var(--gold)}
+.cf-textarea{min-height:120px;line-height:1.6}
+.cf-submit{
+  width:100%;font-family:var(--ff-m);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--gold);color:var(--bg);padding:14px;border-radius:4px;font-weight:700;
+  transition:all .2s var(--spring)
+}
+.cf-submit:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(212,168,67,.3)}
+
+/* ========================================================
+   MODALS
+======================================================== */
+.modal-overlay{
+  position:fixed;inset:0;z-index:500;display:none;align-items:flex-start;justify-content:center;
+  padding:80px 20px 20px;background:rgba(7,7,14,.88);backdrop-filter:blur(16px);overflow-y:auto
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);
+  max-width:720px;width:100%;position:relative;overflow:hidden
+}
+.modal-shimmer{height:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold),var(--sky),var(--gold-dim));background-size:200% 100%;animation:shimmerBar 3s linear infinite}
+@keyframes shimmerBar{0%{background-position:100% 0}100%{background-position:-100% 0}}
+.modal-header{padding:32px 36px 0}
+.modal-badge{
+  font-family:var(--ff-m);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px
+}
+.modal-title{font-family:var(--ff-d);font-size:clamp(24px,4vw,36px);letter-spacing:.04em;line-height:1.05;color:var(--text);margin-bottom:16px}
+.modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.modal-body{padding:0 36px 36px}
+.modal-desc{font-size:14px;color:var(--text2);line-height:1.8;white-space:pre-wrap;margin-bottom:28px}
+.modal-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.mm-lbl{font-family:var(--ff-m);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.mm-val{font-size:13px;color:var(--text);font-weight:500}
+.modal-meta > div{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:14px}
+.modal-media{
+  background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);
+  padding:24px;margin-bottom:20px
+}
+.media-label{font-family:var(--ff-m);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.media-placeholder{font-size:13px;color:var(--muted);font-style:italic}
+.modal-discuss{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--gold-glow2);border:1px solid var(--gold-dim);border-radius:var(--r);
+  padding:16px 20px;transition:all .2s;cursor:pointer
+}
+.modal-discuss:hover{background:var(--gold-glow);border-color:var(--gold)}
+.md-left{font-family:var(--ff-m);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.md-sub{font-size:12px;color:var(--text2);margin-top:2px}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:6px;
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--text2);font-size:16px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;z-index:10
+}
+.modal-close:hover{background:var(--border2);color:var(--text)}
+
+/* tag shared */
+.tag{
+  font-family:var(--ff-m);font-size:9px;letter-spacing:.08em;
+  background:var(--surface2);border:1px solid var(--border2);
+  color:var(--text2);padding:4px 9px;border-radius:2px
+}
+.tag.gold{background:var(--gold-glow2);border-color:var(--gold-dim);color:var(--gold)}
+
+/* ========================================================
+   FOOTER
+======================================================== */
+footer{
+  border-top:1px solid var(--border);
+  padding:32px 48px;max-width:var(--mw);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--ff-m);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)
+}
+footer a{color:var(--muted);transition:color .2s}
+footer a:hover{color:var(--gold)}
+#footer-wrap{display:none}
+#footer-wrap.show{display:block}
+
+/* GitHub Pill */
+.gh-pill{
+  position:fixed;bottom:28px;right:28px;z-index:100;
+  display:flex;align-items:center;gap:8px;
+  background:var(--surface2);border:1px solid var(--border2);border-radius:20px;
+  padding:9px 16px;font-family:var(--ff-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text2);transition:all .2s var(--ease);text-decoration:none
+}
+.gh-pill:hover{border-color:var(--gold-dim);color:var(--gold);background:var(--gold-glow2);transform:translateY(-2px)}
+.gh-pill svg{width:14px;height:14px;fill:currentColor}
+
+/* ========================================================
+   RESPONSIVE
+======================================================== */
+@media(max-width:1024px){
+  .about-grid{grid-template-columns:1fr}
+  .about-photo{aspect-ratio:21/9}
+  .research-featured{grid-template-columns:1fr}
+  .rf-right{border-left:none;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(3,1fr)}
+  .research-cards{grid-template-columns:1fr 1fr}
+  .projects-grid{grid-template-columns:1fr 1fr}
+  .blog-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{padding:0 24px}
+  .nav-wordmark{display:none}
+  .nav-links{
+    position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;
+    background:rgba(7,7,14,.97);backdrop-filter:blur(24px);
+    flex-direction:column;align-items:center;justify-content:center;gap:8px;
+    display:none
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:12px;padding:14px 24px}
+  .nav-hamburger{display:flex}
+  .nav-cta{display:none}
+  .hero-content{padding:0 28px}
+  .hero-stats{left:28px;right:28px;flex-wrap:wrap;gap:24px}
+  .hero-stat{border-right:none;padding:0}
+  .hero-scroll{display:none}
+  .section-wrap{padding:64px 24px}
+  .research-cards{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
+  .gallery-placeholder{grid-template-columns:repeat(2,1fr)}
+  .modal-header,.modal-body{padding-left:24px;padding-right:24px}
+  .modal-meta{grid-template-columns:1fr 1fr}
+  .rf-right{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:12px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ======== NAV ======== -->
+<nav id="main-nav">
+  <div class="nav-logo" onclick="go('home')">
+    <div class="nav-monogram">PB</div>
+    <div class="nav-wordmark">PATRICIO <span>BELTRAN</span></div>
+  </div>
+  <div class="nav-links" id="nav-links">
+    <a data-p="home"       onclick="go('home')"      >Home</a>
+    <a data-p="about"      onclick="go('about')"     >About</a>
+    <a data-p="research"   onclick="go('research')"  >Research</a>
+    <a data-p="projects"   onclick="go('projects')"  >Projects</a>
+    <a data-p="experience" onclick="go('experience')">Experience</a>
+    <a data-p="blog"       onclick="go('blog')"      >Blog</a>
+    <a data-p="gallery"    onclick="go('gallery')"   >Gallery</a>
+    <a data-p="contact"    onclick="go('contact')"   >Contact</a>
+    <button class="nav-hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <a class="nav-cta" href="https://github.com/prbeltran" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38l-.01-1.49c-2.23.49-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.52-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0z"/></svg>
+    GitHub
+  </a>
+</nav>
+
+<!-- ======== HOME ======== -->
+<section id="home" class="page-section">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">W.M. Keck Center · NASA Researcher · UTEP</div>
+    <h1 class="hero-name">PATRICIO<br><em>BELTRAN</em></h1>
+    <div class="hero-title">Materials Engineer &nbsp;·&nbsp; Researcher &nbsp;·&nbsp; Builder</div>
+    <p class="hero-desc">Designing the future of additive manufacturing at the intersection of aerospace materials science, laser powder bed fusion, and engineering leadership.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="go('projects')">View Projects &nbsp;→</button>
+      <button class="btn-outline" onclick="go('research')">Research Work</button>
+      <button class="btn-outline" onclick="go('contact')">Get in Touch</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hs-num">17+</div><div class="hs-lbl">Projects Completed</div></div>
+    <div class="hero-stat"><div class="hs-num">400+</div><div class="hs-lbl">DoD Personnel Trained</div></div>
+    <div class="hero-stat"><div class="hs-num">3</div><div class="hs-lbl">Published Standards</div></div>
+    <div class="hero-stat"><div class="hs-num">NASA</div><div class="hs-lbl">Active Collaboration</div></div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ======== ABOUT ======== -->
+<section id="about" class="page-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="sec-eyebrow">The Engineer</div>
+      <h2 class="sec-title">ABOUT ME</h2>
+      <p class="sec-sub">Undergraduate researcher, trainer, leader, and builder based in El Paso, TX.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="about-photo">
+          <div class="photo-placeholder-icon">👤</div>
+          <div class="photo-placeholder-text">Add photo to assets/images/photo.jpg</div>
+        </div>
+        <blockquote class="about-quote">
+          "The distance between 'lab-reported' and 'computed' is where most errors hide — and where real research begins."
+        </blockquote>
+        <div class="about-affiliations">
+          <span class="affil-chip">W.M. Keck Center</span>
+          <span class="affil-chip">NASA</span>
+          <span class="affil-chip">NCDMM</span>
+          <span class="affil-chip">America Makes</span>
+          <span class="affil-chip">SHPE/MAES</span>
+          <span class="affil-chip">UTEP</span>
+        </div>
+      </div>
+      <div class="about-right reveal">
+        <div class="about-bio">
+          <p>I'm <strong>Patricio Beltran</strong>, an undergraduate researcher at the University of Texas at El Paso, working at the W.M. Keck Center in collaboration with <strong>NASA</strong> on GRX-810 — a novel nickel-based oxide dispersion strengthened superalloy manufactured via Laser Powder Bed Fusion.</p>
+          <p>My research sits at the intersection of <strong>advanced materials characterization, additive manufacturing process science, and aerospace-grade quality systems</strong>. I've led full characterization campaigns across tensile testing, EBSD, XCT, CMM, SEM, and metallography for components ranging from turbine blisks to automotive heat sinks.</p>
+          <p>Beyond the lab, I've trained <strong>400+ Department of Defense personnel</strong> in metal and polymer 3D printing, developed published standards for America Makes, and serve as <strong>Director of Academics</strong> for the SHPE/MAES chapter at UTEP, where I launched the S.U.N. summer engineering program.</p>
+          <p>I'm pursuing a degree in <strong>Mechanical/Aerospace Engineering</strong> with a Materials Science minor, and I believe the engineers who will shape the next decade of aerospace manufacturing are being built right now — at the intersection of additive manufacturing, data integrity, and systems thinking.</p>
+        </div>
+        <div class="about-cards">
+          <div class="about-card"><div class="ac-label">Institution</div><div class="ac-val">University of Texas at El Paso</div></div>
+          <div class="about-card"><div class="ac-label">Research Center</div><div class="ac-val">W.M. Keck Center for 3D Innovation</div></div>
+          <div class="about-card"><div class="ac-label">Major</div><div class="ac-val">Mechanical / Aerospace Engineering</div></div>
+          <div class="about-card"><div class="ac-label">Location</div><div class="ac-val">El Paso, TX · Ciudad Juárez</div></div>
+        </div>
+        <div class="skills-row" style="margin-top:24px">
+          <div class="skills-label">Technical Skills</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Laser Powder Bed Fusion</span><span class="skill-tag">EBSD / AZtec</span><span class="skill-tag">SEM / EDS-EDAX</span><span class="skill-tag">X-ray CT</span><span class="skill-tag">CMM Inspection</span><span class="skill-tag">Tensile Testing</span><span class="skill-tag">Metallography</span><span class="skill-tag">3D Scanning</span><span class="skill-tag">Python</span><span class="skill-tag">MATLAB</span><span class="skill-tag">Minitab / ANOVA</span><span class="skill-tag">LaTeX / Overleaf</span><span class="skill-tag">React / Vite</span><span class="skill-tag">Supabase</span><span class="skill-tag">Inkscape</span><span class="skill-tag">RocketPy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== RESEARCH ======== -->
+<section id="research" class="page-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="sec-eyebrow">Scientific Work</div>
+      <h2 class="sec-title">RESEARCH</h2>
+      <p class="sec-sub">Active and completed research in advanced materials characterization, LPBF process science, and aerospace superalloys.</p>
+    </div>
+    <div class="research-featured reveal">
+      <div class="rf-shimmer"></div>
+      <div class="rf-left">
+        <div class="rf-eyebrow">Featured Research · Active · NASA Collaboration</div>
+        <h3 class="rf-title">GRX-810 ODS Superalloy via Laser Powder Bed Fusion</h3>
+        <p class="rf-desc">Characterizing a novel nickel-based oxide dispersion strengthened superalloy developed by NASA for next-generation aerospace applications. Work encompasses EBSD microstructural analysis at UTEP's MMBME lab, tensile property ANOVA across three EOS L-PBF machines (M280, M290, M400), and a Python pipeline for cross-machine data integrity auditing.</p>
+        <div class="rf-tags">
+          <span class="tag gold">GRX-810</span><span class="tag">LPBF</span><span class="tag">EBSD</span><span class="tag">ANOVA</span><span class="tag">NASA</span><span class="tag">Python</span><span class="tag">ODS Superalloy</span>
+        </div>
+        <button class="btn-primary" onclick="openProject('grx810')">View Full Project →</button>
+      </div>
+      <div class="rf-right">
+        <div class="rf-stat"><div class="rfs-lbl">Institution</div><div class="rfs-val">W.M. Keck Center / NASA Glenn Research Center</div></div>
+        <div class="rf-stat"><div class="rfs-lbl">Machines Analyzed</div><div class="rfs-val">EOS M280 · M290 · M400</div></div>
+        <div class="rf-stat"><div class="rfs-lbl">Analysis Methods</div><div class="rfs-val">EBSD · Tensile Testing · One-Way ANOVA · Python Audit</div></div>
+        <div class="rf-stat"><div class="rfs-lbl">Status</div><div class="rfs-val" style="color:var(--green)">● Active · Paper in Progress</div></div>
+        <div class="rf-stat"><div class="rfs-lbl">Collaborators</div><div class="rfs-val">Paul · Colton · Tim (NASA) · Zach Barker (EBSD)</div></div>
+      </div>
+    </div>
+    <div class="research-cards">
+      <div class="research-card reveal">
+        <div class="rc-icon">⚙️</div>
+        <div class="rc-title">Metal LPBF Component Studies — NCDMM</div>
+        <div class="rc-desc">Full characterization campaigns for Inconel 718 turbine blisks and AlSi10Mg heat sinks and brackets. Supervised undergraduate teams through 3D scanning, XCT, SEM, tensile testing, and metallography.</div>
+        <div class="rc-tags"><span class="tag">Inconel 718</span><span class="tag">AlSi10Mg</span><span class="tag">XCT</span><span class="tag">Metallography</span></div>
+      </div>
+      <div class="research-card reveal">
+        <div class="rc-icon">📊</div>
+        <div class="rc-title">LPBF Process Standards — America Makes</div>
+        <div class="rc-desc">Developed and published three measurement procedure datasets covering oxygen sensor calibration, gas flow velocity characterization, and laser parameter capture for LPBF systems — addressing critical industry standards gaps.</div>
+        <div class="rc-tags"><span class="tag">Standards</span><span class="tag">Gas Flow</span><span class="tag">Oxygen Sensors</span><span class="tag">Laser Params</span></div>
+      </div>
+      <div class="research-card reveal">
+        <div class="rc-icon">🚀</div>
+        <div class="rc-title">Structural Analysis — High-Powered Rocketry</div>
+        <div class="rc-desc">Structural analysis of the payload bolt plate for Odyssey 30K IREC rocket. Developed RocketPy workflow documentation and compared atmospheric modeling approaches versus OpenRocket for dual-parachute recovery.</div>
+        <div class="rc-tags"><span class="tag">Structures</span><span class="tag">RocketPy</span><span class="tag">IREC</span><span class="tag">Recovery</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== PROJECTS ======== -->
+<section id="projects" class="page-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="sec-eyebrow">Work Portfolio</div>
+      <h2 class="sec-title">PROJECTS</h2>
+      <p class="sec-sub">Engineering, research, software, and leadership work across aerospace, defense, and academia.</p>
+    </div>
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-btn active" onclick="filterProjects('all',this)">All (17)</button>
+      <button class="filter-btn" onclick="filterProjects('research',this)">Research</button>
+      <button class="filter-btn" onclick="filterProjects('engineering',this)">Engineering</button>
+      <button class="filter-btn" onclick="filterProjects('software',this)">Software</button>
+      <button class="filter-btn" onclick="filterProjects('leadership',this)">Leadership</button>
+    </div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </div>
+</section>
+
+<!-- ======== EXPERIENCE ======== -->
+<section id="experience" class="page-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="sec-eyebrow">Career</div>
+      <h2 class="sec-title">EXPERIENCE</h2>
+      <p class="sec-sub">Research, training, and leadership roles spanning NASA, DoD, and academic institutions.</p>
+    </div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- ======== BLOG ======== -->
+<section id="blog" class="page-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="sec-eyebrow">Writing</div>
+      <h2 class="sec-title">BLOG</h2>
+      <p class="sec-sub">Technical reflections, research lessons, and engineering leadership insights.</p>
+    </div>
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+</section>
+
+<!-- ======== GALLERY ======== -->
+<section id="gallery" class="page-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="sec-eyebrow">Visual Work</div>
+      <h2 class="sec-title">GALLERY</h2>
+      <p class="sec-sub">Lab work, equipment, events, and engineering in progress.</p>
+    </div>
+    <div class="gallery-instructions reveal">
+      <div class="gi-icon">🖼️</div>
+      <div class="gi-title">Add Your Images</div>
+      <p class="gi-desc">Place your photos into <code>assets/images/gallery/</code> and replace the placeholder grid below with your image tags.</p>
+      <div class="gi-code">
+        &lt;!-- Replace .gp-item divs with: --&gt;<br>
+        &lt;img src="assets/images/gallery/your-photo.jpg"<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; alt="Caption" class="gallery-img"&gt;
+      </div>
+    </div>
+    <div class="gallery-placeholder reveal">
+      <div class="gp-item">🔬</div><div class="gp-item">⚙️</div>
+      <div class="gp-item">🏭</div><div class="gp-item">📐</div>
+      <div class="gp-item">🚀</div><div class="gp-item">🎓</div>
+      <div class="gp-item">🖨️</div><div class="gp-item">📊</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== CONTACT ======== -->
+<section id="contact" class="page-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="sec-eyebrow">Connect</div>
+      <h2 class="sec-title">CONTACT</h2>
+      <p class="sec-sub">Open to research collaborations, speaking opportunities, and engineering conversations.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p style="font-size:15px;color:var(--text2);line-height:1.75">Whether you're working on additive manufacturing research, building something ambitious, or want to discuss engineering — reach out. I'm always open to meaningful conversations.</p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:prbeltran@miners.utep.edu">
+            <div class="cl-icon">✉️</div>
+            <div class="cl-text"><div class="cl-label">Email</div><div class="cl-val">prbeltran@miners.utep.edu</div></div>
+          </a>
+          <a class="contact-link" href="https://github.com/prbeltran" target="_blank" rel="noopener">
+            <div class="cl-icon">⚡</div>
+            <div class="cl-text"><div class="cl-label">GitHub</div><div class="cl-val">github.com/prbeltran</div></div>
+          </a>
+          <a class="contact-link" href="https://linkedin.com/in/prbeltran" target="_blank" rel="noopener">
+            <div class="cl-icon">💼</div>
+            <div class="cl-text"><div class="cl-label">LinkedIn</div><div class="cl-val">linkedin.com/in/prbeltran</div></div>
+          </a>
+          <a class="contact-link" href="https://www.utep.edu/engineering/keck/" target="_blank" rel="noopener">
+            <div class="cl-icon">🏛️</div>
+            <div class="cl-text"><div class="cl-label">Institution</div><div class="cl-val">UTEP — W.M. Keck Center</div></div>
+          </a>
+        </div>
+        <a class="contact-discuss" href="https://github.com/prbeltran/portfolio/discussions" target="_blank" rel="noopener">
+          <div>
+            <div class="md-left">💬 &nbsp;Discussion Board</div>
+            <div class="md-sub">Ask questions, share ideas, or start a conversation on GitHub Discussions</div>
+          </div>
+          <span style="color:var(--gold);font-size:18px">→</span>
+        </a>
+      </div>
+      <div class="contact-form-wrap reveal">
+        <div class="cf-title">SEND A MESSAGE</div>
+        <div class="cf-field">
+          <label class="cf-label">Your Name</label>
+          <input class="cf-input" id="cf-name" type="text" placeholder="John Smith">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">Subject</label>
+          <input class="cf-input" id="cf-subject" type="text" placeholder="Research collaboration, speaking, etc.">
+        </div>
+        <div class="cf-field">
+          <label class="cf-label">Message</label>
+          <textarea class="cf-textarea" id="cf-msg" placeholder="Tell me about your project or question..."></textarea>
+        </div>
+        <button class="cf-submit" onclick="sendMsg()">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== FOOTER ======== -->
+<div id="footer-wrap">
+  <footer>
+    <span>© 2025 Patricio Beltran · El Paso, TX</span>
+    <span>Built with precision &amp; purpose</span>
+    <span>
+      <a href="mailto:prbeltran@miners.utep.edu">Email</a> &nbsp;·&nbsp;
+      <a href="https://github.com/prbeltran" target="_blank">GitHub</a> &nbsp;·&nbsp;
+      <a href="https://linkedin.com/in/prbeltran" target="_blank">LinkedIn</a>
+    </span>
+  </footer>
+</div>
+
+<!-- GitHub Pill -->
+<a class="gh-pill" href="https://github.com/prbeltran" target="_blank" rel="noopener">
+  <svg viewBox="0 0 16 16"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38l-.01-1.49c-2.23.49-2.7-1.07-2.7-1.07-.36-.93-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.52-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0z"/></svg>
+  prbeltran
+</a>
+
+<!-- ======== PROJECT MODAL ======== -->
+<div class="modal-overlay" id="proj-modal" onclick="handleOverlayClick(event,'proj-modal')">
+  <div class="modal">
+    <div class="modal-shimmer"></div>
+    <button class="modal-close" onclick="closeModal('proj-modal')">✕</button>
+    <div class="modal-header">
+      <div class="modal-badge" id="m-badge"></div>
+      <div class="modal-title" id="m-title"></div>
+      <div class="modal-tags" id="m-tags"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-desc" id="m-desc"></div>
+      <div class="modal-meta" id="m-meta"></div>
+      <div class="modal-media">
+        <div class="media-label">Media &amp; Files</div>
+        <div class="media-placeholder" id="m-media">Add images, PDFs, or links to assets/projects/[id]/ and update the PROJECTS data array to include a media[] property.</div>
+      </div>
+      <a class="modal-discuss" href="https://github.com/prbeltran/portfolio/discussions" target="_blank" rel="noopener">
+        <div>
+          <div class="md-left">💬 &nbsp;Discuss this project</div>
+          <div class="md-sub">Open a conversation on GitHub Discussions — ask questions, give feedback, or collaborate</div>
+        </div>
+        <span style="color:var(--gold);font-size:18px">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ======== BLOG MODAL ======== -->
+<div class="modal-overlay" id="blog-modal" onclick="handleOverlayClick(event,'blog-modal')">
+  <div class="modal">
+    <div class="modal-shimmer"></div>
+    <button class="modal-close" onclick="closeModal('blog-modal')">✕</button>
+    <div class="modal-header">
+      <div class="modal-badge" id="bm-date"></div>
+      <div class="modal-title" id="bm-title"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-desc" id="bm-content"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   DATA
+================================================================ */
+const PROJECTS = [
+/* ── RESEARCH ─────────────────────────────────────────────── */
+{ id:'grx810', cat:'research', icon:'🔬', year:'2024 – Present', status:'Active', inst:'W.M. Keck Center / NASA',
+  title:'GRX-810 ODS Superalloy — NASA Collaboration',
+  desc:'EBSD characterization and multi-machine tensile ANOVA for a novel NASA nickel-based oxide dispersion strengthened superalloy via L-PBF.',
+  full:`GRX-810 is a novel oxide dispersion strengthened (ODS) nickel-based superalloy developed by NASA for next-generation aerospace turbine applications. It is manufactured via Laser Powder Bed Fusion (L-PBF) and features nanoscale oxide dispersoids (Y₂O₃, Al₂O₃) that dramatically improve high-temperature creep resistance compared to conventional nickel superalloys.
+
+My research at the W.M. Keck Center involves:
+
+EBSD Characterization: Conducted Electron Backscatter Diffraction sessions at UTEP's MMBME lab using Oxford AZtec software. Identified correct crystal structure phases for GRX-810 indexing, selected appropriate Ni FCC (γ) phase entries validated against published lattice parameters, and performed full-area grain orientation maps.
+
+Multi-Machine Tensile Analysis: Ran One-Way ANOVA in Minitab on tensile properties (UTS, Yield Strength, Elastic Modulus) across three EOS L-PBF machines (M280, M290, M400) at different build angles to evaluate machine-to-machine and orientation-dependent variation.
+
+Python Data Integrity Pipeline: Built a Python script that ingests raw tensile CSV data, recomputes UTS/YS/E from first principles, and flags specimens where lab-reported values deviate beyond tolerance — output as color-coded Excel reports.
+
+Research Paper: Actively writing in Overleaf (LaTeX) and submitted an abstract to the SFF Conference.`,
+  tags:['GRX-810','L-PBF','EBSD','ANOVA','ODS','NASA','Python','Minitab','SFF'] },
+
+{ id:'blisk', cat:'research', icon:'⚙️', year:'2023 – 2024', status:'Completed', inst:'NCDMM / America Makes',
+  title:'Inconel 718 Turbine Blisk — NCDMM',
+  desc:'Full characterization of an Inconel 718 turbine bladed disk manufactured via L-PBF on an AconityMIDI+. Supervised undergraduate team through the entire campaign.',
+  full:`The Inconel 718 blisk project was a comprehensive case study delivered to small and medium-sized enterprises (SMEs) to support adoption and standardization of metal additive manufacturing technologies.
+
+The component — an integrated blade-and-disk turbine part — was manufactured using gas-atomized Inconel 718 powder on an AconityMIDI+ L-PBF system. Multiple build orientation configurations were evaluated to assess how orientation affects surface finish, dimensional accuracy, and mechanical performance.
+
+My responsibilities included:
+• Defining printing parameters, support structures, and scanning strategies
+• Supervising undergraduate students through manufacturing and characterization
+• Coordinating all characterization activities: 3D scanning, CMM inspection, cross-sectioning, tensile testing, stress-rupture evaluation, metallography, EDS/EDAX chemical composition analysis, and surface roughness assessment
+• Delivering the final case study report to NCDMM for SME distribution`,
+  tags:['Inconel 718','L-PBF','AconityMIDI+','CMM','SEM','Tensile','Metallography','NCDMM'] },
+
+{ id:'heatsink', cat:'research', icon:'🌡️', year:'2023', status:'Completed', inst:'NCDMM',
+  title:'APTIV Heat Sink (AlSi10Mg) — NCDMM',
+  desc:'Full characterization of an AlSi10Mg thermal management component (144.8×94.0×15.2mm) via XCT, CMM, SEM, tensile, and metallography on an SLM 280.',
+  full:`The APTIV heat sink (144.8 mm × 94.0 mm × 15.2 mm) is a thermal management component engineered to absorb and dissipate heat from electronic devices and automotive systems. It was produced using gas-atomized AlSi10Mg powder via Laser Powder Bed Fusion on an SLM 280 platform.
+
+My role involved conducting a full suite of characterization activities:
+• 3D scanning and dimensional comparison against nominal CAD
+• X-ray computed tomography (XCT) for internal porosity and defect analysis
+• CMM dimensional evaluation for geometric tolerance assessment
+• Cross-sectioning, tensile testing, and stress-rupture analysis
+• Metallography and microstructure evaluation
+• Chemical composition assessment via EDS/EDAX
+
+I also provided technical guidance on fabrication considerations, contributing insights into process parameters, support strategies, and build quality implications — ensuring the case study data was actionable for manufacturing engineers.`,
+  tags:['AlSi10Mg','SLM 280','XCT','CMM','Tensile','Metallography','EDS/EDAX','Thermal'] },
+
+{ id:'stoneridge', cat:'research', icon:'🔩', year:'2023', status:'Completed', inst:'NCDMM',
+  title:'Stoneridge Bracket (AlSi10Mg vs A380) — NCDMM',
+  desc:'Die-cast vs. additively manufactured aerospace bracket study using EDS/EDAX, metallography, and microstructural analysis on the Stoneridge mounting bracket.',
+  full:`The Stoneridge bracket (8.6 in × 11.2 in × 2.9 in) is an aluminum aerospace component designed as a structural mounting bracket supporting motors, actuators, or gear mechanisms within aircraft assemblies.
+
+This part was used as a case study comparing die-cast (A380 aluminum) and additively manufactured (AlSi10Mg via L-PBF) versions of the same component.
+
+My responsibilities included:
+• Material characterization through EDS/EDAX chemical composition analysis for both versions
+• Metallography: sample preparation, polishing, etching, optical and SEM microstructure evaluation
+• Quantitative comparison of grain morphology, porosity distribution, and secondary phase presence between manufacturing processes
+• Generating data-driven insights to support manufacturing process selection and performance assessment for SME clients`,
+  tags:['AlSi10Mg','A380','Die Casting','L-PBF','EDS/EDAX','Metallography','Aerospace','NCDMM'] },
+
+{ id:'oxygen', cat:'research', icon:'📊', year:'2024', status:'Published', inst:'America Makes',
+  title:'LPBF Oxygen Sensor Calibration — America Makes',
+  desc:'Published recommended procedures for calibrating oxygen sensors used in metal L-PBF systems, filling critical industry standards gaps on gas environment characterization.',
+  full:`This published dataset provides insight into a novel measurement approach for characterizing the gas environment within Laser Powder Bed Fusion systems, specifically targeting oxygen sensor calibration — an area with limited industry standardization.
+
+The work establishes recommended measurement procedures that fill gaps in existing industry standards, which generally recommend characterizing gas flow in LPBF but provide insufficient specifics on implementation.
+
+The document covers:
+• Sensor selection criteria and placement methodology for LPBF chambers
+• Calibration procedures under various inert gas atmospheres
+• Measurement validation and error sources
+• Recommendations for ongoing calibration schedules in production environments
+
+Published under America Makes as part of a broader effort to standardize LPBF process monitoring and quality systems.`,
+  tags:['LPBF','Oxygen Sensors','Standards','Calibration','America Makes','Gas Environment'] },
+
+{ id:'gasflow', cat:'research', icon:'💨', year:'2024', status:'Published', inst:'America Makes',
+  title:'Gas Flow Velocity Measurement Device — LPBF (America Makes)',
+  desc:'Novel measurement device and procedures for quantifying inert gas flow velocity within LPBF environmental control chambers, addressing industry standards gaps.',
+  full:`This published dataset introduces a novel measurement approach for acquiring data that characterizes gas flow velocity within the environmental control chamber of Laser Powder Bed Fusion machines.
+
+Gas flow within LPBF systems is critical to build quality — it removes spatter and condensate from the laser path, maintains inert atmosphere integrity, and influences melt pool stability. Despite its importance, standardized measurement approaches have been largely absent from the industry.
+
+The work covers:
+• Design and implementation of a novel gas flow measurement device adaptable to LPBF chamber geometries
+• Measurement protocols for acquiring velocity profiles across the build volume
+• Data analysis methodology for characterizing spatial uniformity of gas flow
+• Recommendations for how machine operators can use this data to optimize flow settings and improve build consistency
+
+Published under America Makes as part of the ongoing effort to fill LPBF process monitoring standards gaps.`,
+  tags:['LPBF','Gas Flow','Metrology','Measurement Device','Standards','America Makes','Process Monitoring'] },
+
+{ id:'laserparams', cat:'research', icon:'🔆', year:'2024', status:'Published', inst:'America Makes',
+  title:'LPBF Laser Parameter Capture Procedures — America Makes',
+  desc:'Standard procedures for capturing, documenting, and validating laser parameters in L-PBF systems to support process consistency and quality traceability.',
+  full:`This published dataset provides a measurement approach for capturing laser parameters within Laser Powder Bed Fusion systems — addressing a gap in industry standards that recommend parameter documentation but provide limited procedural guidance.
+
+Laser parameter documentation is essential for:
+• Process repeatability and machine-to-machine qualification
+• Quality traceability for aerospace and defense applications
+• Correlating process parameters with mechanical property outcomes
+• Supporting supplier qualification and auditing
+
+The work establishes procedures for:
+• Identifying and capturing laser power, spot size, scan speed, and hatch spacing parameters
+• Validating parameters against machine-reported values using independent measurement devices
+• Documenting parameters in a standardized format compatible with existing quality management systems
+• Handling parameter variation and drift over time
+
+Published under America Makes as part of the LPBF process monitoring standards development program.`,
+  tags:['LPBF','Laser Parameters','Process Control','Standards','Traceability','America Makes','Quality'] },
+
+/* ── ENGINEERING ───────────────────────────────────────────── */
+{ id:'rocket', cat:'engineering', icon:'🚀', year:'2024', status:'Completed', inst:'Sun City Summit Rocket Team — UTEP',
+  title:'Odyssey 30K — IREC High-Powered Rocket',
+  desc:'Structural analysis of payload bolt plate for a 30,000 ft apogee competition rocket. RocketPy workflow documentation and dual-parachute recovery system analysis.',
+  full:`The Odyssey 30K is a high-powered competition rocket targeting 30,000 ft apogee for the Intercollegiate Rocket Engineering Competition (IREC). The airframe is composite construction with a custom payload section housing science experiments.
+
+My contribution as Structural Analyst focused on the payload bolt plate — a critical interface component transmitting recovery loads between the payload bay and airframe.
+
+Work included:
+• Structural analysis of the bolt plate under parachute deployment loads and recovery dynamic loads (SI units)
+• Load path analysis for dual-parachute recovery configuration:
+  - Rocketman PX-04 drogue parachute for initial deceleration
+  - Custom main parachute for terminal descent rate compliance
+• Developed RocketPy flight simulation workflow documentation comparing atmospheric modeling (RocketPy) versus empirical modeling (OpenRocket) for trajectory prediction
+• Generated technical report section for the team's IREC competition submission`,
+  tags:['Structures','Composites','RocketPy','OpenRocket','IREC','Recovery','Parachute','SI Units'] },
+
+{ id:'robosum', cat:'engineering', icon:'🤖', year:'2025', status:'Proposed', inst:'SHPE / MAES UTEP',
+  title:'RoboSub AUV — SHPE Engineering Initiative',
+  desc:'Full project proposal for an autonomous underwater vehicle through SHPE, including $1,000 hardware budget, 15-week roadmap, and component encyclopedia.',
+  full:`Developed a complete launch proposal for a RoboSub Autonomous Underwater Vehicle (AUV) project under SHPE/MAES UTEP — designed to give undergraduate engineers hands-on experience in robotics, embedded systems, and computer vision.
+
+The proposal package includes:
+• Technical scope: 6-DOF AUV capable of visual navigation for RoboSub competition tasks
+• Hardware budget: Full $1,000 component breakdown including frame, thrusters, Raspberry Pi/Jetson compute, depth sensors, and camera systems
+• 15-week development roadmap: Phased from mechanical assembly through software integration and pool testing
+• Component encyclopedia: Detailed reference guide for each major hardware component with specifications and integration notes
+• Team structure: Defined subteams for mechanical, electrical, software, and mission systems
+
+The initiative was designed to serve as a multi-semester capstone experience for SHPE/MAES members pursuing robotics and systems engineering careers.`,
+  tags:['AUV','Robotics','Computer Vision','RoboSub','Raspberry Pi','Embedded Systems','Proposal','SHPE'] },
+
+{ id:'stringing', cat:'engineering', icon:'🖨️', year:'2023', status:'Published', inst:'Keck Center / Independent',
+  title:'FDM Stringing Identification & Troubleshoot Guide',
+  desc:'Video guide on identifying and eliminating stringing in FDM 3D printing: nozzle temperature, retraction settings, high aspect ratio designs, and filament moisture.',
+  full:`Developed a comprehensive video guide and documentation resource for identifying and troubleshooting stringing in Fused Deposition Modeling (FDM) 3D printing.
+
+The guide covers:
+• Understanding why stringing occurs: the relationship between temperature, viscosity, and filament ooze during travel moves
+• Nozzle temperature optimization: effect on stringing frequency and print quality trade-offs
+• Retraction settings: distance and speed tuning for direct drive vs. Bowden extruder systems
+• Handling high aspect ratio designs where stringing is most problematic
+• Filament moisture management: identifying moisture absorption symptoms and proper drying procedures
+• Practical before/after comparisons demonstrating each fix
+
+The resource is designed to serve both beginners encountering stringing for the first time and experienced users dealing with persistent or context-specific stringing issues.`,
+  tags:['FDM','3D Printing','Troubleshooting','Stringing','Retraction','Filament','Video Guide'] },
+
+{ id:'dedguide', cat:'engineering', icon:'🔧', year:'2024', status:'Published', inst:'Keck Center / DRIVE AM',
+  title:'DED System Components — How-To Guide',
+  desc:'Educational video and documentation guide on identifying large-scale Directed Energy Deposition system components and understanding DED technology fundamentals.',
+  full:`Developed a how-to video and accompanying documentation for identifying and understanding the major components of large-scale Directed Energy Deposition (DED) additive manufacturing systems.
+
+DED is a category of additive manufacturing where material (powder or wire) is simultaneously deposited and fused by an energy source (laser, electron beam, or plasma arc). It is widely used for repairing aerospace components, fabricating large structural parts, and cladding surfaces.
+
+The guide covers:
+• Energy delivery systems: laser optics, beam delivery, and focus mechanisms
+• Material feed systems: powder hoppers, feed lines, and nozzle configurations
+• Motion systems: multi-axis gantry and robotic arm configurations
+• Environmental controls: shielding gas delivery and chamber systems
+• Process monitoring: pyrometers, cameras, and melt pool sensors
+• Control and software interfaces
+
+Created for use within the DRIVE AM training program and the W.M. Keck Center, this guide serves as an accessible entry point for engineers new to DED technology.`,
+  tags:['DED','Directed Energy Deposition','Additive Manufacturing','How-To','Training','Video Guide','Keck Center'] },
+
+/* ── SOFTWARE ──────────────────────────────────────────────── */
+{ id:'taskflow', cat:'software', icon:'📋', year:'2025', status:'Active', inst:'Independent',
+  title:'TaskFlow — Full-Stack Kanban Web App',
+  desc:'React + Vite + Supabase Kanban board with real-time collaboration deployed to GitHub Pages. Built with collaborator Jose. Exploring commercialization paths.',
+  full:`TaskFlow is a full-stack Kanban project management web application built from scratch as a learning and portfolio project, with potential for commercialization.
+
+Tech Stack:
+• Frontend: React + Vite (component-based architecture, fast HMR development)
+• Backend: Supabase (PostgreSQL database, real-time subscriptions, auth)
+• Deployment: GitHub Pages (static hosting, CI/CD via GitHub Actions)
+
+Features:
+• Drag-and-drop Kanban board with customizable columns
+• Real-time multi-user collaboration via Supabase Realtime
+• Task creation, editing, assignment, and status tracking
+• User authentication and team workspace support
+
+Built collaboratively with Jose. Currently exploring product-market fit in the project management space, with potential differentiation around engineering team workflows.
+
+Status: Active development. Evaluating paths to launch as a SaaS product.`,
+  tags:['React','Vite','Supabase','GitHub Pages','Full-Stack','Kanban','SaaS','Real-time'] },
+
+/* ── LEADERSHIP ────────────────────────────────────────────── */
+{ id:'driveam', cat:'leadership', icon:'🏭', year:'2023 – 2024', status:'Completed', inst:'NCDMM / America Makes',
+  title:'DRIVE AM — Automotive AM Transition (Youngstown)',
+  desc:'Collaborated with automotive companies to transition parts from die-casting to LPBF, modernizing manufacturing workflows and adopting material standards.',
+  full:`The DRIVE AM Youngstown initiative focused on helping automotive manufacturers in the Youngstown, OH region evaluate and adopt metal additive manufacturing as a replacement for traditional die-casting processes.
+
+My role involved:
+• Working directly with automotive company engineers to identify candidate parts for AM adoption
+• Evaluating die-cast vs. LPBF manufacturing alternatives for specific component geometries and production volumes
+• Modernizing manufacturing workflows: transitioning from traditional job-shop processes to digital AM workflows
+• Adopting material standards: aligning component requirements with available LPBF material specifications
+• Ensuring capability alignment: matching part requirements to available LPBF machine capabilities and quality systems
+• Safety compliance: confirming operator safety protocols for metal powder handling and machine operation
+
+The initiative contributed to expanding AM adoption among small and medium-sized manufacturers in the automotive supply chain.`,
+  tags:['LPBF','Automotive','Die Casting','AM Adoption','Manufacturing','NCDMM','America Makes'] },
+
+{ id:'driveamfound', cat:'leadership', icon:'🎖️', year:'2023 – 2024', status:'Completed', inst:'America Makes / DoD',
+  title:'DRIVE AM Foundation — 400+ DoD Personnel Trained',
+  desc:'Trained 400+ Department of Defense personnel in metal and polymer 3D printing across 20+ intensive, multi-day sessions as part of the DRIVE AM training team.',
+  full:`As part of the DRIVE AM training program under America Makes, I contributed to training over 400 Department of Defense (DoD) personnel in additive manufacturing technologies — one of the largest DoD-focused AM training initiatives in the country.
+
+The training program covered:
+• Metal 3D printing: L-PBF process principles, design for AM, post-processing, and quality systems
+• Polymer 3D printing: FDM and other polymer processes, materials selection, and applications
+• Design for Additive Manufacturing (DfAM): topology optimization, support minimization, and part consolidation
+• Quality and inspection: first article inspection, NDT for AM components, and process monitoring
+• Supply chain and logistics applications for DoD environments
+
+Format: 20+ intensive, multi-day sessions across multiple locations. Sessions combined lecture, hands-on equipment demonstrations, and practical exercises.
+
+Impact: Over 400 DoD personnel equipped with foundational AM knowledge to evaluate, specify, and oversee additive manufacturing applications within their organizations.`,
+  tags:['DoD','Training','LPBF','FDM','Additive Manufacturing','America Makes','Leadership','400+ Personnel'] },
+
+{ id:'trainsup', cat:'leadership', icon:'🎓', year:'2023 – 2024', status:'Completed', inst:'W.M. Keck Center / NCDMM',
+  title:'Undergraduate Training Supervisor — AM & Metallography',
+  desc:'Directed undergraduate students through full AM workflows and metallography: SEM, EDS/EDAX, 3D scanning, XCT, heat treatment, and microstructure evaluation.',
+  full:`As Undergraduate Training Supervisor at the W.M. Keck Center and in collaboration with NCDMM projects, I directed students through the complete workflow of additive manufacturing and materials characterization.
+
+Additive Manufacturing Training covered:
+• Design for AM principles and parameter selection
+• Process optimization and troubleshooting for both metal and polymer systems
+• Support strategy development and part orientation selection
+• Post-processing: heat treatment, support removal, surface finishing
+• Quality assessment and first article inspection
+
+Metallography Training covered:
+• Sample preparation: sectioning, mounting, grinding, and polishing sequences
+• Etching protocols for aluminum and nickel alloys
+• Optical microscopy: microstructure evaluation and documentation
+• SEM operation and image acquisition
+• EDS/EDAX chemical composition analysis and data interpretation
+• Interpretation of microstructural features in AM components
+
+NDT and Advanced Characterization:
+• 3D scanning with structured light and laser systems
+• X-ray computed tomography (XCT) for internal defect analysis
+
+Students were prepared for industry and research roles requiring hands-on AM and characterization expertise.`,
+  tags:['Mentorship','Training','Metallography','SEM','EDS/EDAX','3D Scanning','XCT','AM','Leadership','UTEP'] },
+
+{ id:'sun', cat:'leadership', icon:'☀️', year:'2025', status:'Active', inst:'SHPE / MAES UTEP',
+  title:'S.U.N. Program — Summer Undergraduate Network',
+  desc:'Designed and launched a summer engineering program for SHPE/MAES with dual engineering tracks: composite rocket with robotic recovery and autonomous surveillance drone.',
+  full:`The S.U.N. (Summer Undergraduate Network) program is a structured summer engineering initiative I designed and launched as Director of Academics for SHPE/MAES UTEP, providing motivated undergraduates with access to meaningful engineering projects during the summer semester.
+
+Program Design:
+• Track 1: High-altitude composite rocket with robotic recovery system — targeting IREC-level performance with autonomous recovery mechanisms
+• Track 2: Autonomous surveillance drone with computer vision — integrating flight systems with real-time object detection and tracking
+
+Proposal Development:
+I wrote three distinct proposals targeting different audiences:
+• E-Board proposal: chapter impact, member engagement, institutional legacy
+• Faculty proposal: academic rigor, mentorship structure, research outcomes
+• Research center proposal: equipment access, lab hour utilization, institutional benefit
+
+Supporting Materials:
+• 14-slide student-facing PowerPoint covering program overview, technical tracks, expectations, and application
+• Microsoft Forms application structure for student screening
+• Recruitment email campaign targeting SHPE/MAES membership
+
+Onboarded Jose as Chair of Academics to sustain the program's administrative functions.`,
+  tags:['Leadership','Program Design','SHPE','Rocket','Drone','Computer Vision','Proposals','UTEP'] },
+
+{ id:'amdr', cat:'leadership', icon:'🛡️', year:'2024 – 2025', status:'Delivered', inst:'UTEP / DoD',
+  title:'AMDR Course — Reverse Engineering & Part Digitization',
+  desc:'Developed and delivered a defense-focused AMDR Course 2 on Reverse Engineering and Part Digitization with two PowerPoint decks in DoD training aesthetic.',
+  full:`The AMDR (Additive Manufacturing Defense Readiness) Course 2 is a defense-focused training module on Reverse Engineering and Part Digitization — designed to give DoD personnel practical skills for transitioning legacy parts to digital manufacturing workflows.
+
+Course Development:
+• Produced two comprehensive PowerPoint decks in DoD training aesthetic (navy/orange color system, formal layout)
+• Deck 1: Fundamentals of reverse engineering — workflows, tools, decision frameworks for part digitization
+• Deck 2: Practical methods — 3D scanning protocols, point cloud processing, CAD reconstruction, and quality validation
+
+Content covered:
+• When and why to reverse engineer: obsolete parts, supplier qualification, AM conversion
+• 3D scanning technologies: structured light, laser scanning, CT scanning for complex internals
+• Point cloud to CAD workflows: scan-to-native and scan-to-mesh-to-print approaches
+• Tolerancing and inspection: validating digitized models against original parts
+• IP and data management considerations for DoD environments
+
+Delivered as part of the AMDR defense manufacturing readiness curriculum.`,
+  tags:['DoD','Reverse Engineering','3D Scanning','Part Digitization','Training','Defense','AMDR','AM'] }
+];
+
+/* ── EXPERIENCE ─────────────────────────────────────────────── */
+const EXPERIENCE = [
+  { date:'2024 – Present',
+    role:'Undergraduate Research Assistant',
+    org:'W.M. Keck Center for 3D Innovation / NASA Glenn Research Center',
+    pts:[
+      'Characterizing GRX-810 ODS nickel superalloy fabricated via Laser Powder Bed Fusion in collaboration with NASA',
+      'Running One-Way ANOVA analyses in Minitab on tensile properties (UTS, YS, Elastic Modulus) across build angles on EOS M280, M290, M400',
+      'Conducting EBSD analysis sessions with Oxford AZtec at UTEP MMBME lab; managing crystal phase indexing for novel alloy',
+      'Built Python audit pipeline to cross-validate lab-reported vs. computed mechanical properties across specimen datasets',
+      'Writing materials science research paper in Overleaf (LaTeX); submitted abstract to SFF Conference',
+      'Coordinating with NASA collaborators Tim, Paul, and Colton on fabrication parameters, specimen details, and characterization needs'
+    ]},
+  { date:'2023 – 2024',
+    role:'Project Researcher & Training Specialist',
+    org:'NCDMM / America Makes — National Center for Defense Manufacturing & Machining',
+    pts:[
+      'Led full characterization campaigns for Inconel 718 blisk and AlSi10Mg heat sink and bracket (XCT, CMM, SEM, tensile, metallography)',
+      'Supervised undergraduate teams through manufacturing and characterization phases of NCDMM case studies',
+      'Published three America Makes datasets covering LPBF process monitoring: oxygen sensor calibration, gas flow velocity, and laser parameter capture',
+      'Contributed to DRIVE AM Youngstown initiative: automotive die-cast to LPBF transition with manufacturing companies',
+      'Developed and delivered DRIVE AM Foundation training to 400+ DoD personnel across 20+ multi-day sessions in metal and polymer AM',
+      'Produced AMDR Course 2 training content on Reverse Engineering and Part Digitization for defense audiences'
+    ]},
+  { date:'2024 – Present',
+    role:'Director of Academics (DoAR)',
+    org:'SHPE / MAES — University of Texas at El Paso',
+    pts:[
+      'Designed and launched the S.U.N. (Summer Undergraduate Network) program with dual engineering tracks: composite rocket and autonomous surveillance drone',
+      'Wrote three audience-specific proposals (E-Board, Faculty, Research Center) and a 14-slide student-facing PowerPoint for program recruitment',
+      'Developed Microsoft Forms application structure; onboarded and mentored Jose as Chair of Academics',
+      'Oversaw academic programming strategy and events for SHPE/MAES UTEP membership'
+    ]},
+  { date:'2024',
+    role:'Structural Analyst',
+    org:'Sun City Summit Rocket Team — UTEP',
+    pts:[
+      'Structural analysis of payload bolt plate for the Odyssey 30K IREC high-powered competition rocket (SI units)',
+      'Dual-parachute recovery configuration analysis: Rocketman PX-04 drogue + custom main chute',
+      'Developed RocketPy workflow documentation comparing atmospheric modeling vs. OpenRocket empirical approach'
+    ]},
+  { date:'2023 – 2024',
+    role:'Undergraduate Training Supervisor — AM & Metallography',
+    org:'W.M. Keck Center / NCDMM',
+    pts:[
+      'Directed undergraduate students through complete AM workflows: design, process optimization, printing, and quality assessment',
+      'Instructed metallography: heat treatment, sample preparation, microstructure evaluation, SEM and EDS/EDAX characterization',
+      'Trained students in NDT: 3D scanning (structured light, laser) and X-ray computed tomography (XCT)'
+    ]}
+];
+
+/* ── BLOG ───────────────────────────────────────────────────── */
+const BLOG = [
+  { id:'b1', date:'May 2025',
+    title:'What Working with NASA Taught Me About Data Integrity',
+    excerpt:'When comparing tensile data across three L-PBF machines, you learn fast that not all data is created equal. Here\'s how I built a Python audit pipeline to catch errors before they became research conclusions.',
+    content:`Working on GRX-810 with NASA taught me a fundamental lesson in materials research: the distance between "lab-reported" and "computed" is where most errors hide.
+
+When we started comparing tensile properties across three EOS machines (M280, M290, M400), I noticed subtle inconsistencies in how elastic modulus values were being recorded. Some were calculated from load-displacement curves; others were pulled from default machine outputs. The numbers looked similar enough to pass a quick scan — but were different enough to skew any ANOVA.
+
+So I built a Python pipeline.
+
+The script ingests raw tensile CSV data, recomputes UTS, YS, and Elastic Modulus from first principles, then flags any specimen where the lab-reported value deviates beyond a defined threshold from the computed one. Output is a color-coded Excel report.
+
+The lesson is not that lab technicians make mistakes — they usually don't. The lesson is that in materials research, your statistical conclusions are only as good as your data audit process. ANOVA on bad data gives you confident wrong answers.
+
+If you're doing tensile testing research: audit before you analyze. Every time.` },
+
+  { id:'b2', date:'March 2025',
+    title:'Building the S.U.N. Program from Scratch',
+    excerpt:'Creating a summer engineering program for SHPE/MAES means writing three different proposals for three different audiences — and figuring out how to make two technical tracks compelling enough to recruit undergrads.',
+    content:`The idea for S.U.N. (Summer Undergraduate Network) started with a simple observation: UTEP students have access to incredible research infrastructure, but limited structured pathways to actually use it over the summer.
+
+As Director of Academics for SHPE/MAES, I decided to build one.
+
+The first challenge was defining the technical scope. I landed on two tracks: (1) a high-altitude composite rocket with robotic recovery system, and (2) an autonomous surveillance drone with computer vision capabilities. Both are challenging enough to be meaningful, accessible enough for motivated undergrads with minimal prior experience.
+
+The second challenge was the proposals. I wrote three, each for a different audience:
+
+• E-Board proposal: focused on chapter impact, member engagement, and institutional legacy
+• Faculty proposal: emphasized academic rigor, mentorship structure, and research outcomes
+• Research center proposal: highlighted equipment access, lab hour utilization, and institutional benefit
+
+Same program. Three value propositions.
+
+The biggest takeaway: leadership in engineering academia is really just product management. Know your audience, build for their incentives, and make a specific ask.` },
+
+  { id:'b3', date:'January 2025',
+    title:'EBSD for GRX-810: Choosing the Right Crystal Phase in Oxford AZtec',
+    excerpt:'Indexing a novel ODS superalloy in AZtec is not straightforward when the alloy is relatively new and the literature on its crystal structure is sparse. Here\'s what I learned.',
+    content:`EBSD (Electron Backscatter Diffraction) looks straightforward in papers but reveals its complexity the moment you sit at the SEM.
+
+For GRX-810, the primary matrix phase is FCC gamma (γ) — standard for nickel superalloys. But GRX-810's distinguishing feature is its dispersed oxide particles (Y₂O₃ and Al₂O₃ species), which are nanoscale and can affect local crystallography in ways that complicate phase indexing.
+
+Setting up the AZtec phase list required:
+
+• Selecting Ni FCC (γ) as the primary phase
+• Evaluating whether oxide dispersion phases were resolvable at the beam conditions used
+• Calibrating pattern center carefully for the exact sample geometry
+• Choosing appropriate band detection settings for expected grain size
+
+The trap I almost fell into: using an incorrect Ni phase entry from the AZtec database — there are multiple Ni variants with slightly different lattice parameters, and mismatched entries give you pattern overlays that look correct but are systematically wrong.
+
+Lesson: for novel alloys, validate your phase selection against published lattice parameters before running a full area map. A 30-minute calibration scan saves six hours of bad data.` }
+];
+
+/* ================================================================
+   ROUTER
+================================================================ */
+function go(page) {
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('[data-p]').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById(page);
+  if (!el) return;
+  el.classList.add('active');
+  const link = document.querySelector(`[data-p="${page}"]`);
+  if (link) link.classList.add('active');
+  document.getElementById('footer-wrap').className = page !== 'home' ? 'show' : '';
+  document.getElementById('nav-links').classList.remove('open');
+  window.scrollTo(0, 0);
+  setTimeout(() => {
+    revealAll();
+    if (page === 'experience') buildTimeline();
+  }, 60);
+  history.pushState({}, '', '#' + page);
+}
+window.addEventListener('popstate', () => go(location.hash.slice(1) || 'home'));
+
+function toggleMenu() { document.getElementById('nav-links').classList.toggle('open'); }
+
+/* ================================================================
+   REVEAL
+================================================================ */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }});
+}, { threshold: 0.08 });
+function revealAll() {
+  document.querySelectorAll('.reveal:not(.visible), .tl-item:not(.visible)').forEach(el => revObs.observe(el));
+}
+
+/* ================================================================
+   HERO CANVAS
+================================================================ */
+function initCanvas() {
+  const cv = document.getElementById('hero-canvas');
+  const ctx = cv.getContext('2d');
+  let W, H, pts = [], mouse = { x: -1000, y: -1000 };
+
+  function resize() {
+    W = cv.width = window.innerWidth;
+    H = cv.height = window.innerHeight;
+    pts = [];
+    const n = Math.min(Math.floor(W * H / 9500), 120);
+    for (let i = 0; i < n; i++) {
+      pts.push({ x:Math.random()*W, y:Math.random()*H,
+        vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3,
+        r:Math.random()*1.5+.4, o:Math.random()*.5+.08 });
+    }
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    const g = ctx.createRadialGradient(W*.5, H*.4, 0, W*.5, H*.4, W*.6);
+    g.addColorStop(0, 'rgba(45,28,6,.3)'); g.addColorStop(.7, 'rgba(10,6,2,.1)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+    pts.forEach((p, i) => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      const dm = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+      const boost = dm < 100 ? (1 - dm/100) * .6 : 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212,168,67,${Math.min(p.o + boost, .9)})`; ctx.fill();
+      for (let j = i + 1; j < pts.length; j++) {
+        const q = pts[j], d = Math.hypot(p.x-q.x, p.y-q.y);
+        if (d < 140) {
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = `rgba(212,168,67,${.06*(1-d/140)+boost*.04})`;
+          ctx.lineWidth = .7; ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(frame);
+  }
+  resize(); frame();
+  window.addEventListener('resize', resize);
+  document.getElementById('home').addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  document.getElementById('home').addEventListener('mouseleave', () => { mouse.x = -1000; mouse.y = -1000; });
+}
+
+/* ================================================================
+   PROJECTS
+================================================================ */
+function buildProjects(filter = 'all') {
+  const grid = document.getElementById('projects-grid');
+  const list = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.cat === filter);
+  grid.innerHTML = list.map(p => `
+    <div class="project-card reveal" onclick="openProject('${p.id}')">
+      <div class="pc-top">
+        <div class="pc-icon">${p.icon}</div>
+        <span class="pc-badge ${p.cat}">${p.cat}</span>
+      </div>
+      <div class="pc-body">
+        <div class="pc-title">${p.title}</div>
+        <div class="pc-desc">${p.desc}</div>
+        <div class="pc-tags">${p.tags.slice(0,4).map(t=>`<span class="pc-tag">${t}</span>`).join('')}</div>
+        <div class="pc-footer">
+          <span class="pc-year">${p.year}</span>
+          <span class="pc-arrow">→</span>
+        </div>
+      </div>
+    </div>`).join('');
+  setTimeout(revealAll, 60);
+}
+
+function filterProjects(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildProjects(f);
+}
+
+function openProject(id) {
+  const p = PROJECTS.find(x => x.id === id); if (!p) return;
+  document.getElementById('m-badge').textContent = `${p.cat.toUpperCase()} · ${p.year} · ${p.status}`;
+  document.getElementById('m-title').textContent = p.title;
+  document.getElementById('m-tags').innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  document.getElementById('m-desc').textContent = p.full || p.desc;
+  document.getElementById('m-meta').innerHTML = `
+    <div><div class="mm-lbl">Institution</div><div class="mm-val">${p.inst}</div></div>
+    <div><div class="mm-lbl">Year</div><div class="mm-val">${p.year}</div></div>
+    <div><div class="mm-lbl">Status</div><div class="mm-val">${p.status}</div></div>`;
+  document.getElementById('proj-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+/* ================================================================
+   TIMELINE
+================================================================ */
+let tlBuilt = false;
+function buildTimeline() {
+  if (tlBuilt) return;
+  document.getElementById('timeline').innerHTML = EXPERIENCE.map(e => `
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">${e.date}</div>
+      <div class="tl-role">${e.role}</div>
+      <div class="tl-org">${e.org}</div>
+      <ul class="tl-points">${e.pts.map(p => `<li>${p}</li>`).join('')}</ul>
+    </div>`).join('');
+  tlBuilt = true;
+  setTimeout(revealAll, 60);
+}
+
+/* ================================================================
+   BLOG
+================================================================ */
+function buildBlog() {
+  document.getElementById('blog-grid').innerHTML = BLOG.map(b => `
+    <div class="blog-card reveal" onclick="openBlog('${b.id}')">
+      <div class="blog-date">${b.date}</div>
+      <div class="blog-title">${b.title}</div>
+      <div class="blog-excerpt">${b.excerpt}</div>
+      <div class="blog-cta">Read more →</div>
+    </div>`).join('');
+}
+
+function openBlog(id) {
+  const b = BLOG.find(x => x.id === id); if (!b) return;
+  document.getElementById('bm-date').textContent = b.date;
+  document.getElementById('bm-title').textContent = b.title;
+  document.getElementById('bm-content').innerHTML = b.content.split('\n').map(l => l.trim() ? `<p style="margin-bottom:14px">${l}</p>` : '').join('');
+  document.getElementById('blog-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+/* ================================================================
+   MODALS
+================================================================ */
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+function handleOverlayClick(e, id) { if (e.target.id === id) closeModal(id); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal('proj-modal'); closeModal('blog-modal'); }});
+
+/* ================================================================
+   CONTACT
+================================================================ */
+function sendMsg() {
+  const name = document.getElementById('cf-name').value;
+  const subject = document.getElementById('cf-subject').value || 'Portfolio Inquiry';
+  const msg = document.getElementById('cf-msg').value;
+  window.location.href = `mailto:prbeltran@miners.utep.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\n\n${msg}`)}`;
+}
+
+/* ================================================================
+   INIT
+================================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  initCanvas();
+  buildProjects();
+  buildBlog();
+  go(location.hash.slice(1) || 'home');
+});
+</script>
+</body>
+</html>
